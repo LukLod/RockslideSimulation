@@ -3,6 +3,8 @@ import java.awt.*;
 
 public class SimulationDisplay extends JFrame{
     private Tile[][] map;
+    private int width;
+    private int height;
     private JPanel[][] mapDisplay;
     SimulationDisplay(Simulation simulation){
 
@@ -11,21 +13,31 @@ public class SimulationDisplay extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
-        this.setSize(simulation.getWidth()*75, 75*simulation.getHeight());
-        map= simulation.getMap();
-        mapDisplay = new JPanel[simulation.getWidth()][simulation.getHeight()];
-        for(int i=0; i<simulation.getWidth(); i++){
-            for(int j=0; j<simulation.getHeight(); j++){
-                mapDisplay[i][j] = new JPanel();
-                mapDisplay[i][j].setBackground(Color.GRAY);
-                this.add(mapDisplay[i][j]);
+        width = simulation.getWidth();
+        height = simulation.getHeight();
+        this.setSize(width*75, height*75);
+        map = simulation.getMap();
+        mapDisplay = new JPanel[height][width];
+        for (int y=0; y<height; y++){
+            for (int x=0; x<width; x++){
+                mapDisplay[y][x] = new JPanel();
+                mapDisplay[y][x].setBackground(Color.GRAY);
+                this.add(mapDisplay[y][x]);
             }
 
         }
 
     }
-    public void Update(Simulation simulation){
+    public void update(){
+        for (int y=0; y<height; y++){
+            for (int x=0; x<width; x++){
+                if(map[y][x] instanceof House){
+                    mapDisplay[y][x].setBackground(Color.GREEN);
+                }
 
+            }
+
+        }
     }
 
 

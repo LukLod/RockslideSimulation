@@ -68,7 +68,15 @@ public class Main {
         frame.add(titleCard, BorderLayout.NORTH);
         frame.add(rightMenu, BorderLayout.EAST);
 
-        generatorButton.addActionListener(e -> new SimulationDisplay(new Simulation(peopleSlider.getValue(), widthSlider.getValue())));
+        generatorButton.addActionListener(e -> generateSimulation(peopleSlider.getValue(), widthSlider.getValue()));
 
     }
+
+    public static void generateSimulation(int people, int width){
+        Simulation symulacja = new Simulation(people, width);
+        SimulationDisplay display = new SimulationDisplay(symulacja);
+        display.update();
+
+    }
+
 }

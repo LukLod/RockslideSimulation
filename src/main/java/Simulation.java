@@ -6,9 +6,9 @@ public class Simulation {
 
     Simulation(int people, int width){
         this.width = width;
-        map = new Tile[width][HEIGHT];
+        map = new Tile[HEIGHT][width];
         for(int i=0; i < width; i++) {
-            map[i][HEIGHT - 1]= new House(i,HEIGHT - 1);
+            map[HEIGHT - 1][i]= new House(i,HEIGHT - 1);
 
 
         }
