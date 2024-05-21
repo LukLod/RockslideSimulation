@@ -7,6 +7,11 @@ public class Simulation {
     Simulation(int people, int width){
         this.width = width;
         map = new Tile[width][HEIGHT];
+        for(int i=0; i < width; i++) {
+            map[i][HEIGHT - 1]= new House(i,HEIGHT - 1);
+
+
+        }
     }
     public int getWidth(){
         return width;
@@ -14,6 +19,8 @@ public class Simulation {
     public int getHeight(){
         return HEIGHT;
     }
-
+    public Tile[][] getMap(){
+        return map;
+    }
 
 }
