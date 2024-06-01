@@ -34,6 +34,12 @@ public class SimulationDisplay extends JFrame{
                 if(map[y][x] instanceof House){
                     mapDisplay[y][x].setBackground(Color.GREEN);
                 }
+                if(map[y][x] instanceof Person){
+                    mapDisplay[y][x].setBackground(Color.BLACK);
+                }
+                if(map[y][x] instanceof Boulder){
+                    mapDisplay[y][x].setBackground(Color.ORANGE);
+                }
 
             }
 
