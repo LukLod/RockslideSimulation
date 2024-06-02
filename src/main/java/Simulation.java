@@ -48,4 +48,32 @@ public class Simulation {
         return map;
     }
 
+    public void update(){
+        for(Tile[] row : map){
+            for(Tile tile : row){
+                if(tile != null && tile.isUpdatable()){
+                    int oldX = tile.getX();
+                    int oldY = tile.getY();
+                    tile.update(this);
+                    int newX = tile.getX();
+                    int newY = tile.getY();
+                    if(oldX  != newX || oldY != newY) {
+                        map[newY][newX] = tile;
+                        map[oldY][oldX] = null;
+                    }
+                }
+            }
+        }
+
+        for(Tile[] row : map){
+            for(Tile tile : row){
+                if(tile != null && !tile.isUpdatable()){
+                    tile.setUpdatability();
+                }
+            }
+        }
+
+    }
+
+
 }

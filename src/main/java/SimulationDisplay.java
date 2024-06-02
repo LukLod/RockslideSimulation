@@ -31,6 +31,9 @@ public class SimulationDisplay extends JFrame{
     public void update(){
         for (int y=0; y<height; y++){
             for (int x=0; x<width; x++){
+
+                mapDisplay[y][x].setBackground(Color.GRAY);
+
                 if(map[y][x] instanceof House){
                     mapDisplay[y][x].setBackground(Color.GREEN);
                 }
@@ -40,6 +43,7 @@ public class SimulationDisplay extends JFrame{
                 if(map[y][x] instanceof Boulder){
                     mapDisplay[y][x].setBackground(Color.ORANGE);
                 }
+
 
             }
 

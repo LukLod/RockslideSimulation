@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
 
@@ -68,14 +70,25 @@ public class Main {
         frame.add(titleCard, BorderLayout.NORTH);
         frame.add(rightMenu, BorderLayout.EAST);
 
-        generatorButton.addActionListener(e -> generateSimulation(peopleSlider.getValue(), widthSlider.getValue()));
+        generatorButton.addActionListener(e -> {
+            try {
+                generateSimulation(peopleSlider.getValue(), widthSlider.getValue());
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
     }
 
-    public static void generateSimulation(int people, int width){
+    public static void generateSimulation(int people, int width) throws InterruptedException {
+        Timer timer = new Timer();
         Simulation symulacja = new Simulation(people, width);
         SimulationDisplay display = new SimulationDisplay(symulacja);
         display.update();
+
+        symulacja.update();
+        display.update();
+
 
     }
 
