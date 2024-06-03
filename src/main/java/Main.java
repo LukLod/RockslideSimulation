@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Timer;
+
 import java.util.TimerTask;
 
 public class Main {
@@ -75,19 +75,25 @@ public class Main {
                 generateSimulation(peopleSlider.getValue(), widthSlider.getValue());
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
             }
         });
 
     }
 
-    public static void generateSimulation(int people, int width) throws InterruptedException {
-        Timer timer = new Timer();
+    public static void generateSimulation(int people, int width) throws Exception {
         Simulation symulacja = new Simulation(people, width);
         SimulationDisplay display = new SimulationDisplay(symulacja);
-        display.update();
+        Timer timer = new Timer(400, e->{
+                display.update();
+                symulacja.update();
+        });
 
-        symulacja.update();
-        display.update();
+
+        timer.start();
+
+
 
 
     }

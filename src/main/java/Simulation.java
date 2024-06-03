@@ -5,6 +5,7 @@ public class Simulation {
     private final int HEIGHT = 10;
     private int width;
     private Tile[][] map;
+    private Counter counter = new Counter();
 
     Simulation(int people, int width){
         this.width = width;
@@ -48,22 +49,45 @@ public class Simulation {
         return map;
     }
 
+//    public void update(){
+//        for(Tile[] row : map){
+//            for(Tile tile : row){
+//                if(tile != null && tile.isUpdatable()){
+//                    int oldX = tile.getX();
+//                    int oldY = tile.getY();
+//                    tile.update(this);
+//                    int newX = tile.getX();
+//                    int newY = tile.getY();
+//                    if(oldX  != newX || oldY != newY) {
+//                        map[newY][newX] = tile;
+//                        map[oldY][oldX] = null;
+//                    }
+//                }
+//            }
+//        }
+
     public void update(){
-        for(Tile[] row : map){
-            for(Tile tile : row){
-                if(tile != null && tile.isUpdatable()){
-                    int oldX = tile.getX();
-                    int oldY = tile.getY();
-                    tile.update(this);
-                    int newX = tile.getX();
-                    int newY = tile.getY();
-                    if(oldX  != newX || oldY != newY) {
-                        map[newY][newX] = tile;
-                        map[oldY][oldX] = null;
+        for(int y = HEIGHT-1; y>=0; y--){
+            for(int x = width-1; x>=0; x--){
+                if(map[y][x] != null && map[y][x].isUpdatable()){
+                    int oldX = map[y][x].getX();
+                    int oldY = map[y][x].getY();
+                    map[y][x].update(this);
+                    if(!map[y][x].isToBeDestroyed()){
+                        int newX = map[y][x].getX();
+                        int newY = map[y][x].getY();
+                        if(oldX  != newX || oldY != newY) {
+                            map[newY][newX] = map[y][x];
+                            map[oldY][oldX] = null;
+                        }
+                    }
+                    else {
+                    map[oldY][oldX] = null;
                     }
                 }
             }
         }
+
 
         for(Tile[] row : map){
             for(Tile tile : row){
@@ -73,6 +97,10 @@ public class Simulation {
             }
         }
 
+    }
+
+    public Counter getCounter(){
+        return counter;
     }
 
 
