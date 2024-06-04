@@ -34,6 +34,7 @@ public class Simulation {
                 int x = random.nextInt(1, width - 1);
                 if(!(map[y][x] instanceof Person)){
                     map[y][x] = new Person(x, y);
+                    counter.setOverall(counter.getOverall()+1);
                     peopleCount++;
                 }
             }
@@ -48,23 +49,6 @@ public class Simulation {
     public Tile[][] getMap(){
         return map;
     }
-
-//    public void update(){
-//        for(Tile[] row : map){
-//            for(Tile tile : row){
-//                if(tile != null && tile.isUpdatable()){
-//                    int oldX = tile.getX();
-//                    int oldY = tile.getY();
-//                    tile.update(this);
-//                    int newX = tile.getX();
-//                    int newY = tile.getY();
-//                    if(oldX  != newX || oldY != newY) {
-//                        map[newY][newX] = tile;
-//                        map[oldY][oldX] = null;
-//                    }
-//                }
-//            }
-//        }
 
     public void update(){
         for(int y = HEIGHT-1; y>=0; y--){

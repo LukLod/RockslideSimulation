@@ -1,5 +1,6 @@
 public class Counter {
 
+    private int overall = 0;
     private int dead = 0;
     private int alive = 0;
 
@@ -15,5 +16,7 @@ public class Counter {
     public void setAlive(int a){
         alive = a;
     }
+    public int getOverall(){return overall;}
+    public void setOverall(int o){overall = o;}
 
 }

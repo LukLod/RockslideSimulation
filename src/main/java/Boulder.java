@@ -16,6 +16,16 @@ public class Boulder extends Tile{
         else{
             position.setY(position.getY()+1);
         }
+        if(position.getX()!=0) {
+            if (simulation.getMap()[position.getY() + 1][position.getX() - 1] instanceof Person) {
+                simulation.getCounter().setDead(simulation.getCounter().getDead() + 1);
+            }
+        }
+        if(position.getX()==0) {
+            if (simulation.getMap()[position.getY()][simulation.getWidth()-1] instanceof Person) {
+                simulation.getCounter().setDead(simulation.getCounter().getDead() + 1);
+            }
+        }
 
         updatable = false;
     }

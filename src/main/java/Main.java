@@ -1,10 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 
-import java.util.TimerTask;
 
 public class Main {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         JButton generatorButton = new JButton();
@@ -85,13 +88,19 @@ public class Main {
     public static void generateSimulation(int people, int width) throws Exception {
         Simulation symulacja = new Simulation(people, width);
         SimulationDisplay display = new SimulationDisplay(symulacja);
-        Timer timer = new Timer(400, e->{
+        Timer timer = new Timer(200, e->{
                 display.update();
                 symulacja.update();
+
+            if(symulacja.getCounter().getAlive() + symulacja.getCounter().getDead() == symulacja.getCounter().getOverall()){
+                ((Timer) e.getSource()).stop();
+                JOptionPane.showMessageDialog(null, "Dead: " + symulacja.getCounter().getDead()+" , "+"Alive: " + symulacja.getCounter().getAlive());
+
+            }
         });
 
-
         timer.start();
+
 
 
 

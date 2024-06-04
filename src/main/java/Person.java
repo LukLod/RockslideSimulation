@@ -2,10 +2,9 @@ import java.util.Random;
 
 public class Person extends Tile{
 
-    private static int count;
+
     Person(int x, int y) {
         super(x, y);
-        count++;
     }
 
     @Override
@@ -28,7 +27,4 @@ public class Person extends Tile{
         updatable = false;
     }
 
-    public static int getCount(){
-        return count;
-    }
 }
